@@ -21,7 +21,7 @@
 			$resultAdmin = $stmtCheckAdmin->execute();
 			$rowAdmin = $resultAdmin->fetchArray(SQLITE3_NUM);
 			if ($rowAdmin[0] == 0) {
-				$defaultPassword = '<password>';
+				$defaultPassword = '1234';
 				$stmtInsertAdmin = $db->prepare("INSERT INTO users (username, password, admin) VALUES (:username, :password, :admin)");
 				$stmtInsertAdmin->bindValue(':username', 'admin', SQLITE3_TEXT);
 				$stmtInsertAdmin->bindValue(':password', password_hash($defaultPassword, PASSWORD_BCRYPT), SQLITE3_TEXT);
