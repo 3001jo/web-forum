@@ -4,7 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Homepage</title>
+	<title>Forum</title>
+	<link rel="stylesheet" href="_style.css">
 </head>
 <body>
-	<h1>Forum</h1>
+	<h1 onclick="location.href='/';">Forum</h1>

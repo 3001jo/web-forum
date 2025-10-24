@@ -6,15 +6,15 @@
 	}
 	if (isset($_POST['username']) && isset($_POST['password'])) {
 		$db = new SQLite3('../forum.db');
-		$db->exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT NOT NULL, password TEXT NOT NULL, created INTEGER NOT NULL, admin BOOLEAN DEFAULT FALSE)");
+		$db->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT NOT NULL, password TEXT NOT NULL, created INTEGER NOT NULL, admin BOOLEAN DEFAULT FALSE)');
 		// default admin user
-		$stmtCheckAdmin = $db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
+		$stmtCheckAdmin = $db->prepare('SELECT COUNT(*) FROM users WHERE username = :username');
 		$stmtCheckAdmin->bindValue(':username', 'admin', SQLITE3_TEXT);
 		$resultAdmin = $stmtCheckAdmin->execute();
 		$rowAdmin = $resultAdmin->fetchArray(SQLITE3_NUM);
 		if ($rowAdmin[0] == 0) {
 			$defaultPassword = '1234';
-			$stmtInsertAdmin = $db->prepare("INSERT INTO users (username, password, created, admin) VALUES (:username, :password, :created, :admin)");
+			$stmtInsertAdmin = $db->prepare('INSERT INTO users (username, password, created, admin) VALUES (:username, :password, :created, :admin)');
 			$stmtInsertAdmin->bindValue(':username', 'admin', SQLITE3_TEXT);
 			$stmtInsertAdmin->bindValue(':password', password_hash($defaultPassword, PASSWORD_BCRYPT), SQLITE3_TEXT);
 			$stmtInsertAdmin->bindValue(':created', time(), SQLITE3_INTEGER);
@@ -23,47 +23,50 @@
 		}
 		// login/signup
 		if ($_POST['signup_flag'] == 1) {
-			$stmtCheck = $db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
+			$stmtCheck = $db->prepare('SELECT COUNT(*) FROM users WHERE username = :username');
 			$stmtCheck->bindValue(':username', $_POST['username'], SQLITE3_TEXT);
 			$result = $stmtCheck->execute();
 			$row = $result->fetchArray(SQLITE3_NUM);
 			if ($row[0] == 0) {
-				$stmt = $db->prepare("INSERT INTO users (username, password, created) VALUES (:username, :password, :created)");
+				$stmt = $db->prepare('INSERT INTO users (username, password, created) VALUES (:username, :password, :created)');
 				$stmt->bindValue(':username', $_POST['username'], SQLITE3_TEXT);
 				$stmt->bindValue(':password', password_hash($_POST['password'], PASSWORD_BCRYPT), SQLITE3_TEXT);
 				$stmt->bindValue(':created', time(), SQLITE3_INTEGER);
 				$stmt->execute();
-				$_SESSION['username'] = $_POST['username'];
-				header('Location: /');
-				exit;
+				$db->close();
+				echo "Account created. You may login.";
 			} else {
 				echo 'Username already exists!';
 			}
 		} else {
-			$stmtFind = $db->prepare("SELECT * FROM users WHERE username = :username");
+			$stmtFind = $db->prepare('SELECT * FROM users WHERE username = :username');
 			$stmtFind->bindValue(':username', $_POST['username'], SQLITE3_TEXT);
 			$result = $stmtFind->execute();
 			$user = $result->fetchArray(SQLITE3_ASSOC);
 			if ($user) {
 				if (password_verify($_POST['password'], $user['password'])) {
 					$_SESSION['username'] = $_POST['username'];
+					$_SESSION['id'] = $user['id'];
+					$_SESSION['admin'] = false;
 					if ($user['admin'] == true) {
-						$_SESSION['is_admin'] = true;
+						$_SESSION['admin'] = true;
 					}
 					header('Location: /');
+					$db->close();
 					exit;
 				}
 			}
-			echo "Could not log-in.";
+			echo 'Could not log-in.';
 		}
+		$db->close();
 	}
 ?>
 <form action="/login.php" method="post">
 	<label for="username">Username:</label><br>
-	<input type="text" id="username" name="username"><br><br>
+	<input type="text" id="username" name="username" required><br><br>
 
 	<label for="password">Password:</label><br>
-	<input type="password" id="password" name="password"><br><br>
+	<input type="password" id="password" name="password" required><br><br>
 
 	<input type="hidden" name="signup_flag" value="0">
 	<input type="submit" value="Login">

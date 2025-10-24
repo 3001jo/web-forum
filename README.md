@@ -9,13 +9,16 @@ A simple forum website with posts.
 - php-sqlite3
 
 # Todo
+- [x] posts (length limits)
+- [ ] delete own posts
 - [ ] subforums
-- [ ] posts
 - [ ] like & dislike counts
-- [ ] comments
+- [ ] comments (length limits)
 - [ ] cookie notifier
 - [ ] profile pictures
 - [ ] screenshots for readme
 
 # License
 **GNU General Public License, Version 3**
+
+<!-- https://github.com/3001jo/web-forum -->
