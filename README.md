@@ -13,6 +13,7 @@ A simple forum website with posts.
 - [ ] posts
 - [ ] like & dislike counts
 - [ ] comments
+- [ ] cookie notifier
 - [ ] profile pictures
 - [ ] screenshots for readme
 
