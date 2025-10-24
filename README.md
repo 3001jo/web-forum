@@ -9,6 +9,12 @@ A simple forum website with posts.
 - php-sqlite3
 
 # Todo
+- [ ] subforums
+- [ ] posts
+- [ ] like & dislike counts
+- [ ] comments
+- [ ] profile pictures
 - [ ] screenshots for readme
 
-**License:**  GNU General Public License, Version 3
+# License
+**GNU General Public License, Version 3**
