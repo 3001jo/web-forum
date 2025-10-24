@@ -19,7 +19,11 @@
 		$db = new SQLite3('../forum.db');
 		$result = $db->query("SELECT * FROM users");
 		while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-			echo "ID: " . htmlspecialchars($row['id']) . " Username: " . htmlspecialchars($row['username']) . " Admin: " . htmlspecialchars($row['admin']) . "<br>";
+			echo "ID: " . htmlspecialchars($row['id']) . " Username: " . htmlspecialchars($row['username']) . " Created: " . date("Y-m-d H:i:s", $row['created']);
+			if ($row['admin'] == 1) {
+				echo " <b>Admin</b>";
+			}
+			echo "<br>";
 		}
 		$db->close();
 	?>
