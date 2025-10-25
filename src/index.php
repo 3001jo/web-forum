@@ -1,17 +1,5 @@
 <?php
 	require '_header.php';
-	echo '<h3>Welcome, ';
-	if (isset($_SESSION['username'])) {
-		echo htmlspecialchars($_SESSION['username']) . '.</h3>';
-		echo '<a href="/logout.php">Logout</a>';
-		echo '<br><a href="/post.php">Post</a>';
-	} else {
-		echo 'Guest.</h3>';
-		echo '<a href="/login.php">Login</a>';
-	}
-	if ($_SESSION['admin'] == true) {
-		echo '<br><a href="/admin.php">Admin Panel</a>';
-	}
 	$db = new SQLite3('../forum.db');
 	$result = $db->query('
 		SELECT posts.*, users.*
@@ -22,7 +10,7 @@
 	');
 	while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 		echo '<h4>';
-		if ($_SESSION['admin'] == true) {
+		if ($isAdmin) {
 			echo '<a href="/admin.php?delete_post=' . $row['id'] . '">Delete</a> ';
 		}
 		if ($row['admin'] == true) {
