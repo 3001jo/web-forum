@@ -32,9 +32,13 @@
 				$stmt->bindValue(':username', $_POST['username'], SQLITE3_TEXT);
 				$stmt->bindValue(':password', password_hash($_POST['password'], PASSWORD_BCRYPT), SQLITE3_TEXT);
 				$stmt->bindValue(':created', time(), SQLITE3_INTEGER);
-				$stmt->execute();
+				$r = $stmt->execute();
+				$_SESSION['username'] = $_POST['username'];
+				$_SESSION['id'] = $db->lastInsertRowID();
+				$_SESSION['admin'] = false;
 				$db->close();
-				echo "Account created. You may login.";
+				header('Location: /');
+				exit;
 			} else {
 				echo 'Username already exists!';
 			}
