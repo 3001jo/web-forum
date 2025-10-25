@@ -8,6 +8,9 @@ body {
 a {
 	color: #809fff;
 }
+p {
+	margin-bottom: 0px;
+}
 #container {
 	display: grid;
 }

@@ -22,11 +22,11 @@
 	}
 	$result = $db->query('SELECT * FROM users');
 	while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-		echo 'ID: ' . htmlspecialchars($row['id']) . ' Created: ' . date('Y-m-d H:i:s', $row['created']) . ' Username: ' . htmlspecialchars($row['username']);
+		echo '<p>ID: ' . htmlspecialchars($row['id']) . ' Created: ' . date('Y-m-d H:i:s', $row['created']) . ' Username: ' . htmlspecialchars($row['username']);
 		if ($row['admin'] == true) {
 			echo ' <b>Admin</b>';
 		}
-		echo '<br>';
+		echo '</p><br>';
 	}
 	$db->close();
 	require '_footer.php';

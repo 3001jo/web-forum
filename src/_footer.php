@@ -1,7 +1,6 @@
 
 <!-- https://github.com/3001jo/web-forum -->
-<br><br>
-<a href="https://github.com/3001jo/web-forum" target="_blank"><img src="/img/github-mark-white.svg" alt="Github Repo" width="32" style="float: middle;"></a>
+<a href="https://github.com/3001jo/web-forum" target="_blank"><img src="/img/github-mark-white.svg" alt="Github Repo" width="32" style="margin-top: 2%;"></a>
 </div>
 </body>
 </html>
