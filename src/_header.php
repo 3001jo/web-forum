@@ -27,7 +27,7 @@
 				} else {
 					echo '<a href="/login.php">Login</a>';
 				}
-				echo '<a href="/profile.php">@' . htmlspecialchars($_SESSION['username']) . "</a>";
+				echo '<a href="/profile.php">@' . htmlspecialchars($_SESSION['username']) . '</a>';
 			?>
 		</div>
 	</div>

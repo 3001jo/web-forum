@@ -11,6 +11,7 @@ php -S 127.0.0.1:4040 -t ./src/
 **GNU General Public License, Version 3**
 
 # Todo
+- [ ] custom functions to retrieve posts (index & profile)
 - [ ] post length limits
 - [x] delete own posts
 - [ ] like & dislike counts

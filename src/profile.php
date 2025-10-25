@@ -1,10 +1,9 @@
 <?php
 	require '_header.php';
-	if (!$loggedIn) {
-		header('Location: /');
-		exit;
+	$thisUsername = 'admin';
+	if ($loggedIn) {
+		$thisUsername = $_SESSION['username'];
 	}
-	$thisUsername = $_SESSION['username'];
 	if (isset($_GET['u'])) {
 		$thisUsername = $_GET['u'];
 	}
@@ -16,9 +15,9 @@
 	$user = $result->fetchArray(SQLITE3_ASSOC);
 	if (!$user) {
 		http_response_code(404);
-		echo "<h2>404 - User not found.</h2>";
+		echo '<h2>404 - User not found.</h2>';
 	} else {
-		echo "<h2>@" . $user['username'] . "</h2>";
+		echo '<h2>@' . $user['username'] . '</h2>';
 		$stmtUserPosts = $db->prepare('
 			SELECT posts.*, users.username, users.created
 			FROM posts
@@ -37,7 +36,7 @@
 			if ($row['admin'] == true) {
 				echo '@';
 			}
-			echo '@' . htmlspecialchars($row['username']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . "</p>";
+			echo '@' . htmlspecialchars($row['username']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
 		}
 	}
 	$db->close();

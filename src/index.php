@@ -16,7 +16,7 @@
 		if ($row['admin'] == true) {
 			echo '@';
 		}
-		echo '@' . htmlspecialchars($row['username']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . "</p>";
+		echo '@' . htmlspecialchars($row['username']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
 	}
 	$db->close();
 	require '_footer.php';
