@@ -1,14 +1,5 @@
 <?php
 	require '_header.php';
-	if (isset($_GET['delete_post'])) {
-		$db = new SQLite3('../forum.db');
-		$stmt = $db->prepare('UPDATE posts SET deleted = TRUE WHERE id = :id');
-		$stmt->bindValue(':id', $_GET['delete_post'], SQLITE3_INTEGER);
-		$stmt->execute();
-		header('Location: /');
-		exit;
-		echo '<script>alert("Post deleted.")</script>';
-	}
 	if (!$isAdmin) {
 		header('Location: /');
 		exit;

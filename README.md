@@ -11,8 +11,8 @@ php -S 127.0.0.1:4040 -t ./src/
 **GNU General Public License, Version 3**
 
 # Todo
-- [x] posts (length limits)
-- [ ] delete own posts
+- [ ] post length limits
+- [x] delete own posts
 - [ ] like & dislike counts
 - [ ] subforums
 - [ ] pages

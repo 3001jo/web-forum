@@ -20,7 +20,7 @@
 	} else {
 		echo "<h2>@" . $user['username'] . "</h2>";
 		$stmtUserPosts = $db->prepare('
-			SELECT posts.*, users.*
+			SELECT posts.*, users.username, users.created
 			FROM posts
 			JOIN users ON posts.authorID = users.id
 			WHERE posts.deleted = FALSE
@@ -32,7 +32,7 @@
 		while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 			echo '<h4>';
 			if ($isAdmin || $thisUsername == $_SESSION['username']) {
-				echo '<a href="/admin.php?delete_post=' . $row['id'] . '">Delete</a> ';
+				echo '<a href="/delete_post.php?postID=' . $row['id'] . '">Delete</a> ';
 			}
 			if ($row['admin'] == true) {
 				echo '@';
