@@ -32,7 +32,7 @@
 				$stmt->bindValue(':username', $_POST['username'], SQLITE3_TEXT);
 				$stmt->bindValue(':password', password_hash($_POST['password'], PASSWORD_BCRYPT), SQLITE3_TEXT);
 				$stmt->bindValue(':created', time(), SQLITE3_INTEGER);
-				$r = $stmt->execute();
+				$stmt->execute();
 				$_SESSION['username'] = $_POST['username'];
 				$_SESSION['id'] = $db->lastInsertRowID();
 				$_SESSION['admin'] = false;

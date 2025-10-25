@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Forum</title>
 	<link rel="stylesheet" href="_style.css">
+	<!-- https://github.com/3001jo/web-forum -->
 </head>
 <body>
 	<h1 onclick="location.href='/';">Forum</h1>
