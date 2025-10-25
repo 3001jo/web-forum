@@ -5,7 +5,7 @@
 </body>
 </html>
 <?php
-	if ($db) {
-		$db->close();
-	}
+	// if ($db) {
+	// 	$db->close();
+	// }
 ?>

@@ -24,10 +24,10 @@
 						echo '<a href="/admin.php">Admin Panel</a>';
 					}
 					echo '<a href="/logout.php">Logout</a>';
+					echo '<a href="/profile.php">@' . htmlspecialchars($_SESSION['username']) . '</a>';
 				} else {
 					echo '<a href="/login.php">Login</a>';
 				}
-				echo '<a href="/profile.php">@' . htmlspecialchars($_SESSION['username']) . '</a>';
 			?>
 		</div>
 	</div>
