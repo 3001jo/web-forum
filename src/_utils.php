@@ -4,8 +4,6 @@
 		header('Location: /');
 		exit;
 	}
-	$loggedIn = isset($_SESSION['username']);
-	$isAdmin = $_SESSION['admin'] == true;
 	function timeAgo($created = 0) {
 		$timeElapsed = time() - $created;
 		if ($timeElapsed < 60) {
@@ -22,6 +20,13 @@
 		}
 	}
 	function render_posts($username = "") {
+		$loggedIn = isset($_SESSION['username']);
+		$isAdmin = false;
+		if (isset($_SESSION['admin'])) {
+			if ($_SESSION['admin'] == true) {
+				$isAdmin = true;
+			}
+		}
 		$allPosts = false;
 		if ($username == "") {
 			$allPosts = true;
@@ -40,13 +45,18 @@
 		$result = $stmtPosts->execute();
 		while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 			echo '<h4>';
-			if ($isAdmin || $row['username'] == $_SESSION['username']) {
-				echo '<a href="/delete_post.php?postID=' . $row['id'] . '">Delete</a> ';
+			if (isset($_SESSION['username'])) {
+				if ($isAdmin || $row['username'] == $_SESSION['username']) {
+					echo '<a href="/delete_post.php?postID=' . $row['id'] . '">Delete</a> ';
+				}
 			}
+			echo '<a href="/profile.php?u=' . htmlspecialchars($row['username']);
 			if ($row['admin'] == true) {
-				echo '!';
+				echo '" class="admin_name">';
+			} else {
+				echo '">';
 			}
-			echo '<a href="/profile.php?u=' . htmlspecialchars($row['username']) . '">@' . htmlspecialchars($row['username']) . '</a> > ' . timeAgo($row['created']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
+			echo '@' . htmlspecialchars($row['username']) . '</a> > ' . timeAgo($row['created']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
 		}
 		$db->close();
 	}

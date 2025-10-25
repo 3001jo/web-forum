@@ -1,7 +1,12 @@
 <?php
 	session_start();
 	$loggedIn = isset($_SESSION['username']);
-	$isAdmin = $_SESSION['admin'] == true;
+	$isAdmin = false;
+	if (isset($_SESSION['admin'])) {
+		if ($_SESSION['admin'] == true) {
+			$isAdmin = true;
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

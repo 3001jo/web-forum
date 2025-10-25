@@ -19,7 +19,11 @@ p {
 }
 #top_right {
 	float: right;
+	margin-top: 1%; /* TODO: fix */
 }
 #top_right a {
 	margin-left: 10px;
+}
+.admin_name {
+	color: purple;
 }
