@@ -5,8 +5,8 @@
 		exit;
 	}
 ?>
-<h2>Admin Panel</h1>
-<h3>Users</h2>
+<h2>Admin Panel</h2>
+<h3>Users</h3>
 <?php
 	$db = new SQLite3('../forum.db');
 	$result = $db->query('SELECT * FROM users');

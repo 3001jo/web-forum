@@ -7,6 +7,7 @@
 			$isAdmin = true;
 		}
 	}
+	if (!isset($skipHeader) || $skipHeader !== true) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,3 +37,4 @@
 			?>
 		</div>
 	</div>
+	<?php } ?>

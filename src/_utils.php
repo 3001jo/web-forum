@@ -4,6 +4,7 @@
 		header('Location: /');
 		exit;
 	}
+	require_once '_header.php';
 	function timeAgo($created = 0) {
 		$timeElapsed = time() - $created;
 		if ($timeElapsed < 60) {
@@ -20,13 +21,7 @@
 		}
 	}
 	function render_posts($username = "") {
-		$loggedIn = isset($_SESSION['username']);
-		$isAdmin = false;
-		if (isset($_SESSION['admin'])) {
-			if ($_SESSION['admin'] == true) {
-				$isAdmin = true;
-			}
-		}
+		global $isAdmin;
 		$allPosts = false;
 		if ($username == "") {
 			$allPosts = true;
