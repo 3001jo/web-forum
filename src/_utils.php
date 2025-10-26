@@ -56,7 +56,7 @@
 			} else {
 				echo '">';
 			}
-			echo '@' . htmlspecialchars($row['username']) . '</a> > ' . timeAgo($row['created']) . ' > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
+			echo '@' . htmlspecialchars($row['username']) . '</a> > ' . timeAgo($row['created']) . ' > <button>^</button><button>v</button> 0-0  > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
 		}
 		$db->close();
 	}
