@@ -7,12 +7,12 @@
 	}
 	$data = array('success' => false);
 	$action = $_GET['action'];
-	if ($action == "vote" && isset($_GET['type'])) {
+	if ($action == 'vote' && isset($_GET['type'])) {
 		$type = $_GET['type'];
 		if ($type === -1 || $type === 1) {
 			//  todo
 		}
-	} elseif ($action == "delete_post" && isset($_GET['postID'])) { // /api.php?action=delete_post&postID=
+	} elseif ($action == 'delete_post' && isset($_GET['postID'])) { // /api.php?action=delete_post&postID=
 		$db = new SQLite3('../forum.db');
 		if ($isAdmin) {
 			$stmt = $db->prepare('UPDATE posts SET deleted = TRUE WHERE id = :id');

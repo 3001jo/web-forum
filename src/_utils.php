@@ -20,10 +20,10 @@
 			return $days . ' day' . ($days > 1 ? 's' : '') . ' ago';
 		}
 	}
-	function render_posts($username = "") {
+	function render_posts($username = '') {
 		global $isAdmin;
 		$allPosts = false;
-		if ($username == "") {
+		if ($username == '') {
 			$allPosts = true;
 		}
 		$db = new SQLite3('../forum.db');

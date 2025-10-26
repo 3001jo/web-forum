@@ -1,5 +1,5 @@
-console.log("Source and License: https://github.com/3001jo/web-forum")
-console.log("_main.js");
+console.log('Source and License: https://github.com/3001jo/web-forum')
+console.log('_main.js');
 
 function delete_post(postID) {
 	fetch(`api.php?action=delete_post&postID=${postID}`)
