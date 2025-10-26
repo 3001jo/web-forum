@@ -39,10 +39,10 @@
 		}
 		$result = $stmtPosts->execute();
 		while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-			echo '<h4>';
+			echo '<div class="post" id="post_' . $row['id'] . '"><h4>';
 			if (isset($_SESSION['username'])) {
 				if ($isAdmin || $row['username'] == $_SESSION['username']) {
-					echo '<a href="/delete_post.php?postID=' . $row['id'] . '">Delete</a> ';
+					echo '<button onclick="delete_post(' . $row['id'] . ')">Delete</button> ';
 				}
 			}
 			echo '<a href="/profile.php?u=' . htmlspecialchars($row['username']);
@@ -51,7 +51,7 @@
 			} else {
 				echo '">';
 			}
-			echo '@' . htmlspecialchars($row['username']) . '</a> > ' . timeAgo($row['created']) . ' > <button>^</button><button>v</button> 0-0  > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p>';
+			echo '@' . htmlspecialchars($row['username']) . '</a> > ' . timeAgo($row['created']) . ' > <button>^</button><button>v</button> 0-0  > ' . htmlspecialchars($row['title']) . '</h4><p>' . nl2br(htmlspecialchars($row['text'])) . '</p></div>';
 		}
 		$db->close();
 	}
